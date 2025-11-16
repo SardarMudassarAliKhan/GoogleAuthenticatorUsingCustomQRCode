@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebApplication1.Entity;
+using WebApplication1.Helper;
 
 namespace WebApplication1.Account
 {
@@ -30,11 +31,27 @@ namespace WebApplication1.Account
                     return;
                 }
 
-                // Temp store for verification page
+                // Store temporarily for next page
                 Session["UserIdFor2FA"] = u.UserId;
 
+                // FIRST LOGIN → Setup 2FA
+                if (u.TwoFactorEnabled== false)
+                {
+                    // GENERATE SECRET KEY ONLY IF NOT CREATED BEFORE
+                    if (string.IsNullOrEmpty(u.TwoFactorSecret))
+                    {
+                        u.TwoFactorSecret = TotpHelper.GenerateSecretKey();
+                        db.SaveChanges();
+                    }
+
+                    Response.Redirect("Setup2FA.aspx");
+                    return;
+                }
+
+                // User already set up → Go to verification page
                 Response.Redirect("Verify2FA.aspx");
             }
         }
+
     }
 }

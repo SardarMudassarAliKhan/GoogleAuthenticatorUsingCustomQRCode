@@ -26,6 +26,8 @@ namespace WebApplication1.Account
 
                 if (TotpHelper.ValidateCode(user.TwoFactorSecret, txtCode.Text.Trim()))
                 {
+                    user.TwoFactorEnabled = true;
+                    db.SaveChanges();
                     Session["LoggedInUser"] = user.Username;
                     Response.Redirect("~/Default.aspx");
                 }

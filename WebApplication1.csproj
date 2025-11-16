@@ -136,6 +136,7 @@
     <Content Include="About.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Account\SetUp2FA.aspx" />
     <Content Include="Account\Verify2FA.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -250,6 +251,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\SetUp2FA.aspx.cs">
+      <DependentUpon>SetUp2FA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SetUp2FA.aspx.designer.cs">
+      <DependentUpon>SetUp2FA.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Verify2FA.aspx.cs">
       <DependentUpon>Verify2FA.aspx</DependentUpon>
